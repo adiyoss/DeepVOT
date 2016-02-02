@@ -1,3 +1,8 @@
+# local files
+.DS_Store
+.buildpath
+.project
+.settings
 # Compiled Lua sources
 luac.out
 
@@ -38,4 +43,3 @@ luac.out
 *.i*86
 *.x86_64
 *.hex
-
