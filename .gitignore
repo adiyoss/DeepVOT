@@ -3,6 +3,9 @@
 .buildpath
 .project
 .settings
+data/vot/
+results/*.net
+
 # Compiled Lua sources
 luac.out
 
