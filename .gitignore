@@ -5,6 +5,9 @@
 .settings
 data/vot/
 results/*.net
+.idea/
+
+*.pyc
 
 # Compiled Lua sources
 luac.out
