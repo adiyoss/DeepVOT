@@ -1,0 +1,100 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.6731595324679285 
+tiers? <exists> 
+size = 6 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.009999999999999787 
+            text = "" 
+        intervals [2]:
+            xmin = 0.009999999999999787 
+            xmax = 0.6631595324679287 
+            text = "bad-initial" 
+        intervals [3]:
+            xmin = 0.6631595324679287 
+            xmax = 0.6731595324679285 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Vowel" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.12868836859897215 
+            text = "" 
+        intervals [2]:
+            xmin = 0.12868836859897215 
+            xmax = 0.4147754839516091 
+            text = "ae" 
+        intervals [3]:
+            xmin = 0.4147754839516091 
+            xmax = 0.6731595324679285 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "Release" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.12174918823125847 
+            text = "" 
+        intervals [2]:
+            xmin = 0.12174918823125847 
+            xmax = 0.12868836859897215 
+            text = "b_r" 
+        intervals [3]:
+            xmin = 0.12868836859897215 
+            xmax = 0.6731595324679285 
+            text = "" 
+    item [4]:
+        class = "IntervalTier" 
+        name = "Closure" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.6731595324679285 
+            text = "" 
+    item [5]:
+        class = "IntervalTier" 
+        name = "Voicing" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.6731595324679285 
+            text = "" 
+    item [6]:
+        class = "IntervalTier" 
+        name = "VOT" 
+        xmin = 0 
+        xmax = 0.6731595324679285 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.12174918823125847 
+            text = "" 
+        intervals [2]:
+            xmin = 0.12174918823125847 
+            xmax = 0.12868836859897215 
+            text = "b_VOT" 
+        intervals [3]:
+            xmin = 0.12868836859897215 
+            xmax = 0.6731595324679285 
+            text = "" 
