@@ -3,8 +3,8 @@
 .buildpath
 .project
 .settings
-data/vot/
-results/*.net
+back_end/data/vot/
+*.net
 .idea/
 
 *.pyc
