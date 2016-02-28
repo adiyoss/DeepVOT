@@ -92,8 +92,6 @@ print('==> validation loss: ' .. loss)
 
 -- training
 while loss < best_loss or iteration < opt.patience do       
-  -- update the best loss value
-  best_loss = loss
   
   -- train - forward and backprop
   train(train_x, train_y) 
@@ -110,6 +108,9 @@ while loss < best_loss or iteration < opt.patience do
     print('==> Loss did not improved, iteration: ' .. iteration)
     print('========================================\n')
   else
+    -- update the best loss value
+    best_loss = loss
+    
     -- save/log current net
     local filename = paths.concat(opt.save, 'model.net')
     os.execute('mkdir -p ' .. sys.dirname(filename))
