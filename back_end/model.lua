@@ -71,12 +71,15 @@ elseif opt.model_type == 'bi-lstm' then
 elseif opt.model_type == 'lstm' then 
   -- forward rnn
   -- build simple recurrent neural network
-  fwd = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
-  s_rnn = nn.Sequencer(fwd)
+  fwd_1 = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
+  fwd_2 = nn.FastLSTM(opt.hidden_size, opt.hidden_size)  
+  s_rnn_1 = nn.Sequencer(fwd_1)
+  s_rnn_2 = nn.Sequencer(fwd_2)
 
-  rnn = nn.Sequential()
+  rnn = nn.Sequential()     
+     :add(s_rnn_1)
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
-     :add(s_rnn)
+     :add(s_rnn_2)
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
      :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
      :add(nn.Sequencer(nn.LogSoftMax()))

@@ -32,7 +32,7 @@ if not opt then
    cmd:option('-loss', 'nll', 'the type of loss function: nll') 
    
    -- for the train
-   cmd:option('-save', 'results/anamda_dimi_voiceless_2drop_layers', 'subdirectory to save/log experiments in')
+   cmd:option('-save', 'results/anamda_2_layers_voiceless_drop_0.3', 'subdirectory to save/log experiments in')
    cmd:option('-plot', true, 'live plot')
    cmd:option('-optimization', 'ADAGRAD', 'optimization method: ADAGRAD | SGD')
    cmd:option('-learningRate', 0.1, 'learning rate at t=0')
