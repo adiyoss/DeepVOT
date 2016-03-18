@@ -57,7 +57,8 @@ elseif opt.model_type == 'bi-lstm' then
 
   -- merges the output of one time-step of fwd and bwd rnns.
   -- You could also try nn.AddTable(), nn.Identity(), etc.
-  merge = nn.JoinTable(1, 1)
+  -- merge = nn.JoinTable(1, 1)
+  merge = nn.CSubTable()
   
   -- build the bidirectional lstm
   brnn = nn.BiSequencer(fwd, bwd, merge)
@@ -65,7 +66,8 @@ elseif opt.model_type == 'bi-lstm' then
   rnn = nn.Sequential()
      :add(brnn) 
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
-     :add(nn.Sequencer(nn.Linear(2*opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
+     -- :add(nn.Sequencer(nn.Linear(2*opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
+     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- 1 time due to CSubTable
      :add(nn.Sequencer(nn.LogSoftMax()))
      
 elseif opt.model_type == 'lstm' then 

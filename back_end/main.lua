@@ -23,7 +23,7 @@ if not opt then
    cmd:option('-val_percentage', 0.15, 'the percentage of exampels to be considered as validation set from the training set')
    
    -- for the model
-   cmd:option('-model_type', 'lstm', 'the type of model: bi-lm | bi-lstm | lstm') 
+   cmd:option('-model_type', 'bi-lstm', 'the type of model: bi-lm | bi-lstm | lstm') 
    cmd:option('-output_dim', 2, 'the output size')
    cmd:option('-hidden_size', 100, 'the hidden layer size')
    cmd:option('-dropout', 0.3, 'dropout rate')
@@ -32,7 +32,7 @@ if not opt then
    cmd:option('-loss', 'nll', 'the type of loss function: nll') 
    
    -- for the train
-   cmd:option('-save', 'results/anamda_2_layers_voiceless_drop_0.3', 'subdirectory to save/log experiments in')
+   cmd:option('-save', 'results/anamda_bi_lstm_diff', 'subdirectory to save/log experiments in')
    cmd:option('-plot', true, 'live plot')
    cmd:option('-optimization', 'ADAGRAD', 'optimization method: ADAGRAD | SGD')
    cmd:option('-learningRate', 0.1, 'learning rate at t=0')
