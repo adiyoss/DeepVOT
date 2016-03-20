@@ -121,7 +121,7 @@ function build_neg_dataset(path, labels_filename, names_filename, num_feat)
       --load the data and its dim
       local x, dim = load_data(paths.concat(path, file))
       new_x = x[{{}, {1, num_feat}}]:reshape(x:size(1)*num_feat)
-      new_x = new_x:resize(100*num_feat) -- TODO!!!!!
+      new_x = new_x:resize(100 * num_feat) -- TODO!!!!!
       local y = labels[file][1]
       local x_y = torch.zeros(new_x:size(1) + 1, 1)
       x_y[{1,1}] = y
