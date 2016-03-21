@@ -9,6 +9,7 @@ back_end/data/vot/
 
 *.pyc
 *.t7
+paper/*
 
 # Compiled Lua sources
 luac.out
