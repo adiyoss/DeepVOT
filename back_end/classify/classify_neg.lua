@@ -1,5 +1,5 @@
 -- for debuing purposes
---require('mobdebug').start()
+require('mobdebug').start()
 require('torch')
 require('nn')
 require('rnn')
@@ -14,7 +14,7 @@ if not opt then
    cmd:text()
    cmd:text('Options:')
 
-   cmd:option('-data_type', 'vot', 'the type of the data: dummy | vot')
+   cmd:option('-data_type', 'neg_vot', 'the type of the data: dummy | vot | neg_vot')
    cmd:option('-test', 'classification_test.t7', 'the path to the test data')
    cmd:option('-input_dim', 63, 'the input size')
    cmd:option('-model_path', '../results/neg_vot_measurement_dimitrieva/model.net', 'the path to the model') 
@@ -118,6 +118,8 @@ if opt.data_type == 'dummy' then
   data_dir = '../data/dummy/'
 elseif opt.data_type == 'vot' then
   data_dir = '../data/vot/'
+elseif opt.data_type == 'neg_vot' then
+  data_dir = '../data/neg_vot/'
 end
 local test_data = torch.load(paths.concat(data_dir, opt.test))
 for i=1,#test_data do
@@ -158,10 +160,10 @@ ms_50 = 0
 for i=1,#y do
   curr_y = y[i]
   curr_y_hat = y_hat[i]  
-  task_loss = task_loss + torch.abs(curr_y[1] - curr_y_hat[1]) + torch.abs(curr_y[2] - curr_y_hat[2])
+  task_loss = task_loss + torch.abs(curr_y[1] - curr_y_hat[1])
   
-  y_dur = curr_y[2] - curr_y[1]
-  y_hat_dur = curr_y_hat[2] - curr_y_hat[1]
+  y_dur = curr_y[1]
+  y_hat_dur = curr_y_hat[1]
   dif = torch.abs(y_dur - y_hat_dur)
   
   if dif <= 2 then

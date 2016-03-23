@@ -15,15 +15,15 @@ if not opt then
    cmd:text()
    cmd:text('Options:')
    -- for the data
-   cmd:option('-data_type', 'vot', 'the type of the data: lm | dummy | vot')
-   cmd:option('-train', 'amanda_dimitrieva_voiceless.t7', 'the path to the train data')
+   cmd:option('-data_type', 'neg_vot', 'the type of the data: lm | dummy | vot | neg_vot')
+   cmd:option('-train', 'train.t7', 'the path to the train data')
    cmd:option('-test', 'test.t7', 'the path to the test data')
    cmd:option('-batch_size', 32, 'the mini-batch size')
    cmd:option('-input_dim', 63, 'the input size')  
    cmd:option('-val_percentage', 0.15, 'the percentage of exampels to be considered as validation set from the training set')
    
    -- for the model
-   cmd:option('-model_type', 'bi-lstm', 'the type of model: bi-lm | bi-lstm | lstm') 
+   cmd:option('-model_type', 'lstm', 'the type of model: bi-lm | bi-lstm | lstm') 
    cmd:option('-output_dim', 2, 'the output size')
    cmd:option('-hidden_size', 100, 'the hidden layer size')
    cmd:option('-dropout', 0.3, 'dropout rate')
@@ -32,7 +32,7 @@ if not opt then
    cmd:option('-loss', 'nll', 'the type of loss function: nll') 
    
    -- for the train
-   cmd:option('-save', 'results/anamda_bi_lstm_diff', 'subdirectory to save/log experiments in')
+   cmd:option('-save', 'results/neg_vot_measurement_dimitrieva', 'subdirectory to save/log experiments in')
    cmd:option('-plot', true, 'live plot')
    cmd:option('-optimization', 'ADAGRAD', 'optimization method: ADAGRAD | SGD')
    cmd:option('-learningRate', 0.1, 'learning rate at t=0')
