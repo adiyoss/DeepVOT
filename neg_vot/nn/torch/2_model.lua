@@ -29,15 +29,18 @@ noutputs = opt.num_class
 ----------------------------------------------------------------------
 print '==> construct model'
 if opt.model == 'fc' then
-   hidden_dim = opt.input_dim
+   hidden_dim = 512
    -- Simple 2-layer neural network, with tanh hidden units
    model = nn.Sequential()
    model:add(nn.Linear(opt.input_dim, hidden_dim))
    model:add(nn.ReLU())
-   model:add(nn.Dropout(0.5))
+   model:add(nn.Dropout(0.8))
    model:add(nn.Linear(hidden_dim, hidden_dim))
    model:add(nn.ReLU())
-   model:add(nn.Dropout(0.5))
+   model:add(nn.Dropout(0.8))
+   model:add(nn.Linear(hidden_dim, hidden_dim))
+   model:add(nn.ReLU())
+   model:add(nn.Dropout(0.8))
    model:add(nn.Linear(hidden_dim, noutputs))
    
 elseif opt.model == 'conv' then

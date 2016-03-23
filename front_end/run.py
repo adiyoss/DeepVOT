@@ -172,7 +172,7 @@ def neg_vot_creator(audio_path, textgrid_path, output_path, l):
                 features_file.close()
                 labels_file.close()
 
-                command = "./sbin/VotFrontEnd2 %s %s %s" % (input_file.name, features_file.name, labels_file.name)
+                command = "./sbin/VowelDurationFrontEnd %s %s %s" % (input_file.name, features_file.name, labels_file.name)
                 easy_call(command)
 
                 # remove leftovers

@@ -13,7 +13,7 @@ cmd:text()
 cmd:text('Options:')
 -- global:
 cmd:option('-seed', 1224, 'fixed input seed for repeatable experiments')
-cmd:option('-threads', 4, 'number of threads')
+cmd:option('-threads', 1, 'number of threads')
 cmd:option('-type', 'double', 'the data type: double')
 cmd:option('-n_epochs', 50, 'the number of epochs')
 cmd:option('-save', 'results', 'subdirectory to save/log experiments in')
@@ -29,7 +29,7 @@ cmd:option('-num_class', 2, 'the number of classes')
 cmd:option('-loss', 'nll', 'type of loss function to minimize: nll | margin')
 
 -- training:
-cmd:option('-save', 'results', 'subdirectory to save/log experiments in')
+cmd:option('-save', 'results/fold_2/', 'subdirectory to save/log experiments in')
 cmd:option('-plot', false, 'live plot')
 cmd:option('-optimization', 'ADAGRAD', 'optimization method: SGD | ADAGRAD')
 cmd:option('-learningRate', 0.01, 'learning rate at t=0')

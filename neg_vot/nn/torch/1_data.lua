@@ -22,7 +22,7 @@ end
 print '==> Building db'
 in_dim_size = opt.input_dim
 
-db_dir = 'data/neg_vot/'
+db_dir = 'data/10ms_db/fold_1/'
 train_file = 'train.t7'
 test_file = 'test.t7'
 

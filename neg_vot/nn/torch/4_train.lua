@@ -24,8 +24,8 @@ if not opt then
    cmd:text()
    opt = cmd:parse(arg or {})
 end
-
 ----------------------------------------------------------------------
+
 print '==> defining some tools'
 
 -- classes
@@ -73,7 +73,7 @@ function train()
   
    -- epoch tracker
    epoch = epoch or 1
-
+  
    -- local vars
    local time = sys.clock()
 
@@ -122,7 +122,7 @@ function train()
                           local output = model:forward(inputs[i])
                           local err = criterion:forward(output, targets[i])
                           f = f + err
-
+                        
                           -- estimate df/dW
                           local df_do = criterion:backward(output, targets[i])
                           model:backward(inputs[i], df_do)
@@ -136,7 +136,7 @@ function train()
                        f = f/#inputs
 
                        -- return f and df/dX
-                       return f,gradParameters
+                       return f, gradParameters
                     end
                     
       -- optimize on current mini-batch
