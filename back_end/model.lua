@@ -71,6 +71,21 @@ elseif opt.model_type == 'bi-lstm' then
      :add(nn.Sequencer(nn.LogSoftMax()))
      
 elseif opt.model_type == 'lstm' then 
+  
+  --- SINGLE LAYER ---
+  -- forward rnn
+  -- build simple recurrent neural network
+  fwd_1 = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
+  s_rnn_1 = nn.Sequencer(fwd_1)
+
+  rnn = nn.Sequential()     
+     :add(s_rnn_1)
+     :add(nn.Sequencer(nn.Dropout(opt.dropout)))
+     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
+     :add(nn.Sequencer(nn.LogSoftMax()))
+     
+  --[[
+  --- TWO LAYERS ---
   -- forward rnn
   -- build simple recurrent neural network
   fwd_1 = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
@@ -85,6 +100,7 @@ elseif opt.model_type == 'lstm' then
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
      :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
      :add(nn.Sequencer(nn.LogSoftMax()))
+     ]]--
 end
 
 -- print the model

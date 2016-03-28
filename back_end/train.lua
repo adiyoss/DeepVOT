@@ -95,7 +95,7 @@ function train(train_x, train_y)
             end
             targets[step] = sequence:index(1, offsets)
         end
-      elseif opt.data_type == 'dummy' or opt.data_type == 'vot' then
+      elseif opt.data_type == 'dummy' or opt.data_type == 'vot' or opt.data_type == 'neg_vot' then
         for step=1, opt.batch_size do
           -- a batch of inputs
           inputs[step], targets[step] = get_mini_batch(train_x, train_y, opt.rho)
