@@ -1,2 +1,64 @@
+# general
+*.pyc
+*.net
+
+# post-process
 post_process/.idea
-*/model.net
+
+# backend
+back_end/data/multi_class/
+back_end/data/neg_vot/
+back_end/data/vot/
+.DS_Store
+back_end/.DS_Store
+back_end/classify/.DS_Store
+back_end/classify/log/.DS_Store
+back_end/classify/log/dimitrieva_neg/.DS_Store
+back_end/classify/log/natalia/.DS_Store
+back_end/data/.DS_Store
+back_end/data/dummy/.DS_Store
+back_end/results/.DS_Store
+back_end/results/neg_vot_measurement_dimitrieva/.DS_Store
+back_end/results/neg_vot_measurement_dimitrieva_2_layers/.DS_Store
+back_end/results/neg_vot_measurement_dimitrieva_bi_lstm/.DS_Store
+back_end/results/neg_vot_natalia/.DS_Store
+back_end/results/not_use_natalia/.DS_Store
+back_end/results/not_use_natalia/bi_lstm_lr_0.1_pati_3_input_63/.DS_Store
+
+# frontend
+front_end/.DS_Store
+front_end/.idea/
+front_end/data/.DS_Store
+front_end/data/measurement/.DS_Store
+front_end/data/natalia_tmp/.DS_Store
+front_end/data/natalia_tmp/new/.DS_Store
+
+# classification
+classification/.DS_Store
+classification/.idea/
+
+# neg
+neg_vot/.DS_Store
+neg_vot/.idea/
+neg_vot/nn/.DS_Store
+neg_vot/nn/python/.DS_Store
+neg_vot/nn/python/.idea/
+neg_vot/nn/python/data.pyc
+neg_vot/nn/python/model/
+neg_vot/nn/torch/.DS_Store
+neg_vot/nn/torch/data/
+neg_vot/nn/torch/results/.DS_Store
+neg_vot/nn/torch/results/10ms_db/.DS_Store
+neg_vot/nn/torch/results/old/.DS_Store
+neg_vot/nn/torch/results/old/fold_3/.DS_Store
+neg_vot/signal_processing/.DS_Store
+neg_vot/signal_processing/.idea/
+neg_vot/signal_processing/data/.DS_Store
+
+# visualization
+visualization/.DS_Store
+visualization/.idea/
+visualization/measurement/.DS_Store
+visualization/measurement/examples/.DS_Store
+visualization/neg_vot/.DS_Store
+visualization/neg_vot/.idea/
