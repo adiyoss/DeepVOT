@@ -2,20 +2,8 @@ import argparse
 import os
 import sys
 import shutil as st
-from subprocess import call
+from lib import utils
 from lib.textgrid import TextGrid
-
-
-# run system commands
-def easy_call(command):
-    try:
-        call(command, shell=True)
-    except Exception as exception:
-        print "Error: could not execute the following"
-        print ">>", command
-        print type(exception)  # the exception instance
-        print exception.args  # arguments stored in .args
-        exit(-1)
 
 
 def measurement_features(audio_path, textgrid_path, output_path):
@@ -26,9 +14,6 @@ def measurement_features(audio_path, textgrid_path, output_path):
     label_suffix = '.labels'
     tmp_features = tmp_dir + 'tmp.features'
     tmp_file = tmp_dir + 'tmp.wav'
-    gap_start = 0.02
-    # gap_start = 0.1
-    gap_end = 0.02
 
     # validation
     if not os.path.exists(audio_path):
@@ -42,13 +27,15 @@ def measurement_features(audio_path, textgrid_path, output_path):
         st.rmtree(tmp_dir)
     os.mkdir(tmp_dir)
 
+    s = 0
+    c = 0
     # loop over all the files in the input dir
     for item in os.listdir(audio_path):
         if item.endswith('.wav'):
             try:
                 # convert to 16K 16bit
                 cmd = 'sbin/sox %s -r 16000 -b 16 %s' % (audio_path + item, tmp_file)
-                easy_call(cmd)
+                utils.easy_call(cmd)
 
                 # parse the textgrid
                 textgrid = TextGrid()
@@ -57,6 +44,10 @@ def measurement_features(audio_path, textgrid_path, output_path):
                 voicing_start = textgrid._TextGrid__tiers[5]._IntervalTier__intervals[1]._Interval__xmin
                 voicing_end = textgrid._TextGrid__tiers[5]._IntervalTier__intervals[1]._Interval__xmax
 
+                # release_start = textgrid._TextGrid__tiers[2]._IntervalTier__intervals[1]._Interval__xmin
+                # release_end = textgrid._TextGrid__tiers[2]._IntervalTier__intervals[1]._Interval__xmax
+                # s += release_start - voicing_start
+                # c += 1
                 # onset = min(release_start, voicing_start)
                 # offset = max(release_end, voicing_end)
 
@@ -94,7 +85,7 @@ def measurement_features(audio_path, textgrid_path, output_path):
                 labels_file.close()
 
                 command = "./sbin/VotFrontEnd2 %s %s %s" % (input_file.name, features_file.name, labels_file.name)
-                easy_call(command)
+                utils.easy_call(command)
 
                 # remove leftovers
                 os.remove(tmp_input)
@@ -102,7 +93,8 @@ def measurement_features(audio_path, textgrid_path, output_path):
                 os.remove(tmp_features)
             except:
                 print item
-
+    # s /= c
+    # print(s)
     st.rmtree(tmp_dir)
 
 

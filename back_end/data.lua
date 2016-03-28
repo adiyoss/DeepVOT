@@ -95,7 +95,7 @@ elseif opt.data_type == 'dummy' then
   test_y:add(1) -- torch start index is 1 not 0
 
 elseif opt.data_type == 'neg_vot' then
-  data_dir = 'data/neg_vot/'
+  data_dir = 'data/neg_vot/fold_1/'
   local train = torch.load(paths.concat(data_dir, opt.train))
   local test = torch.load(paths.concat(data_dir, opt.test))
     
@@ -132,6 +132,45 @@ elseif opt.data_type == 'neg_vot' then
   test_x = test[{{}, {2, (opt.input_dim+1)}}]
   test_y = test[{{}, 1}]  
   test_y:add(1) -- torch start index is 1 not 0    
+  
+elseif opt.data_type == 'multi' then
+  data_dir = 'data/multi_class/'
+  local train = torch.load(paths.concat(data_dir, opt.train))
+  local test = torch.load(paths.concat(data_dir, opt.test))
+    
+  -- take part of the training set for validation
+  local val_size = train:size(1)*opt.val_percentage
+  local val = train[{{(train:size(1)-val_size), train:size(1)}, {}}]   -- take the last elements for validation
+  train = train[{{1, (train:size(1)-val_size-1)}, {}}]                 -- the rest are for training
+  
+  -- Detecting and removing NaNs
+  if train:ne(train):sum() > 0 then
+    print(sys.COLORS.red .. ' training set has NaN/s, replace with zeros.')
+    train[train:ne(train)] = 0
+  end
+  if test:ne(test):sum() > 0 then
+    print(sys.COLORS.red .. ' test set has NaN/s, replace with zeros.')
+    test[test:ne(test)] = 0
+  end
+  if val:ne(val):sum() > 0 then
+    print(sys.COLORS.red .. ' validation set has NaN/s, replace with zeros.')
+    val[val:ne(val)] = 0
+  end
+  
+  -- build training set
+  train_x = train[{{}, {2, (opt.input_dim+1)}}]
+  train_y = train[{{}, 1}]
+  train_y:add(1) -- torch start index is 1 not 0
+
+  -- build validation set
+  val_x = val[{{}, {2, (opt.input_dim+1)}}]
+  val_y = val[{{}, 1}]
+  val_y:add(1) -- torch start index is 1 not 0
+
+  -- build test set
+  test_x = test[{{}, {2, (opt.input_dim+1)}}]
+  test_y = test[{{}, 1}]  
+  test_y:add(1) -- torch start index is 1 not 0
   
 elseif opt.data_type == 'vot' then
   data_dir = 'data/vot/'

@@ -15,7 +15,7 @@ if not opt then
    cmd:text()
    cmd:text('Options:')
    -- for the data
-   cmd:option('-data_type', 'neg_vot', 'the type of the data: lm | dummy | vot | neg_vot')
+   cmd:option('-data_type', 'multi', 'the type of the data: lm | dummy | vot | neg_vot | multi')
    cmd:option('-train', 'train.t7', 'the path to the train data')
    cmd:option('-test', 'test.t7', 'the path to the test data')
    cmd:option('-batch_size', 32, 'the mini-batch size')
@@ -24,24 +24,24 @@ if not opt then
    
    -- for the model
    cmd:option('-model_type', 'lstm', 'the type of model: bi-lm | bi-lstm | lstm') 
-   cmd:option('-output_dim', 2, 'the output size')
+   cmd:option('-output_dim', 4, 'the output size')
    cmd:option('-hidden_size', 100, 'the hidden layer size')
-   cmd:option('-dropout', 0.3, 'dropout rate')
+   cmd:option('-dropout', 0.8, 'dropout rate')
    
    -- for the loss
    cmd:option('-loss', 'nll', 'the type of loss function: nll') 
    
    -- for the train
-   cmd:option('-save', 'results/neg_vot_measurement_dimitrieva', 'subdirectory to save/log experiments in')
+   cmd:option('-save', 'results/multi_natalia/', 'subdirectory to save/log experiments in')
    cmd:option('-plot', true, 'live plot')
    cmd:option('-optimization', 'ADAGRAD', 'optimization method: ADAGRAD | SGD')
    cmd:option('-learningRate', 0.1, 'learning rate at t=0')
    
    -- for the main
-   cmd:option('-rho', 50, 'max sequence length')
+   cmd:option('-rho', 100, 'max sequence length')
    cmd:option('-patience', 5, 'the number of epochs to be patient before early stopping')
    cmd:option('-seed', 1245, 'the starter seed, for randomness')
-   cmd:option('-threads', 2, 'the number of threads') -- check this
+   cmd:option('-threads', 4, 'the number of threads') -- check this
    cmd:text()
    opt = cmd:parse(arg or {})
 end

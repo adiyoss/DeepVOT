@@ -15,11 +15,12 @@ if not opt then
    cmd:text('Options:')
 
    cmd:option('-data_type', 'vot', 'the type of the data: dummy | vot')
-   cmd:option('-test', 'classification_test.t7', 'the path to the test data')
+   cmd:option('-test', 'prevoiced_natalia_test.t7', 'the path to the test data')
    cmd:option('-input_dim', 63, 'the input size')
-   cmd:option('-model_path', '../results/neg_vot_measurement_dimitrieva/model.net', 'the path to the model') 
+   cmd:option('-model_path', '../results/anamda_2_layers_voiceless_drop_0.3/model.net', 'the path to the model') 
    cmd:option('-output_dim', 2, 'the output size')
    cmd:option('-hidden_size', 100, 'the hidden layer size')
+   cmd:option('-dump_dir', 'log', 'the path to save the prediction files')
   
    cmd:text()
    opt = cmd:parse(arg or {})
@@ -60,56 +61,6 @@ function classify(inputs)
   return predictions
 end
 
-function predict_classes(frame_pred)
-  local classes = {}
-  for i=1,#frame_pred do
-    maxs, dims = torch.max(frame_pred[i], 2)
-    classes[i] = dims
-  end  
-  return classes
-end
-
-function calc_onset_offset(frame_pred, is_target)
-  local onset_offset = {}
-  
-  if not is_target then
-    local classes = predict_classes(frame_pred)  
-    for i=1, #classes do
-      local onset = 0
-      local offset = 0
-      for j=2,classes[i]:size(1) do
-        if classes[i][j-1][1] == 1 and classes[i][j][1] == 2 then
-          onset = j - 1
-        elseif classes[i][j-1][1] == 2 and classes[i][j][1] == 1 then
-          offset = j - 1
-        end
-      end
-      local curr_y = {}
-      table.insert(curr_y, onset)
-      table.insert(curr_y, offset)
-      onset_offset[i] = curr_y
-    end
-  else
-    classes = frame_pred
-    for i=1, #classes do
-      local onset = 0
-      local offset = 0
-      for j=2,classes[i]:size(1) do
-        if classes[i][j-1] == 1 and classes[i][j] == 2 then
-          onset = j
-        elseif classes[i][j-1] == 2 and classes[i][j] == 1 then
-          offset = j - 1
-        end
-      end
-      local curr_y = {}
-      table.insert(curr_y, onset)
-      table.insert(curr_y, offset)
-      onset_offset[i] = curr_y
-    end
-  end
-  return onset_offset
-end
-
 dofile('utils.lua')
 
 print('==> load test set')
@@ -131,6 +82,7 @@ end
 print('\n==> data statistics: ')
 print('==> number of test examples: ' .. #test_data)
 
+print('\n==> loading model')
 rnn = torch.load(opt.model_path)
 
 -- evaluate on the test set
@@ -144,58 +96,29 @@ for i=1,#test_data do
   y_frame[i] = tmp
 end
 
+-- getting durations
 y = calc_onset_offset(y_frame, true)
 y_hat = calc_onset_offset(y_hat_frame, false)
 
-task_loss = 0
-ms_2 = 0
-ms_5 = 0
-ms_10 = 0
-ms_15 = 0
-ms_25 = 0
-ms_50 = 0
+-- plot stats
+plot_classification_stats(y, y_hat)
 
+-- write predictions to file
+write_predictions(opt.dump_dir, y_hat, y_hat_frame)
+
+--[[
+diffs = {}
+total_dif = 0
 for i=1,#y do
-  curr_y = y[i]
-  curr_y_hat = y_hat[i]  
-  task_loss = task_loss + torch.abs(curr_y[1] - curr_y_hat[1]) + torch.abs(curr_y[2] - curr_y_hat[2])
-  
-  y_dur = curr_y[2] - curr_y[1]
-  y_hat_dur = curr_y_hat[2] - curr_y_hat[1]
-  dif = torch.abs(y_dur - y_hat_dur)
-  
-  if dif <= 2 then
-    ms_2 = ms_2 + 1
-  end
-  if dif <= 5 then
-    ms_5 = ms_5 + 1
-  end
-  if dif <= 10 then
-    ms_10 = ms_10 + 1
-  end
-  if dif <= 15 then
-    ms_15 = ms_15 + 1
-  end
-  if dif <= 25 then
-    ms_25 = ms_25 + 1
-  end
-  if dif <= 50 then
-    ms_50 = ms_50 + 1
+  dif = torch.abs(y[i][1] - y_hat[i][1])
+  print(string.format('Exmaple number: %d, Diff: %d', i, dif))
+  if diffs[dif] == nil then
+    diffs[dif] = 1
+  else
+    diffs[dif] = diffs[dif] + 1
   end
 end
 
-task_loss = task_loss/#y
-ms_2 = ms_2/#y
-ms_5 = ms_5/#y
-ms_10 = ms_10/#y
-ms_15 = ms_15/#y
-ms_25 = ms_25/#y
-ms_50 = ms_50/#y
-
-print('\n==> cumulative task loss: ' .. task_loss)
-print('\n==> <= 2ms: ' .. ms_2*100 .. '%')
-print('==> <= 5ms: ' .. ms_5*100 .. '%')
-print('==> <= 10ms: ' .. ms_10*100 .. '%')
-print('==> <= 15ms: ' .. ms_15*100 .. '%')
-print('==> <= 25ms: ' .. ms_25*100 .. '%')
-print('==> <= 50ms: ' .. ms_50*100 .. '%')
+for k, v in pairs(diffs) do
+  print(string.format('Difference: %dms, Accuracy percentage: %.2f%%', k, 100*(v/#y)))
+end]]--

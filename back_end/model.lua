@@ -57,8 +57,8 @@ elseif opt.model_type == 'bi-lstm' then
 
   -- merges the output of one time-step of fwd and bwd rnns.
   -- You could also try nn.AddTable(), nn.Identity(), etc.
-  -- merge = nn.JoinTable(1, 1)
-  merge = nn.CSubTable()
+  merge = nn.JoinTable(1, 1)
+  -- merge = nn.CSubTable()
   
   -- build the bidirectional lstm
   brnn = nn.BiSequencer(fwd, bwd, merge)
@@ -66,8 +66,8 @@ elseif opt.model_type == 'bi-lstm' then
   rnn = nn.Sequential()
      :add(brnn) 
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
-     -- :add(nn.Sequencer(nn.Linear(2*opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
-     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- 1 time due to CSubTable
+     :add(nn.Sequencer(nn.Linear(2*opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
+     --:add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- 1 time due to CSubTable
      :add(nn.Sequencer(nn.LogSoftMax()))
      
 elseif opt.model_type == 'lstm' then 
@@ -75,16 +75,15 @@ elseif opt.model_type == 'lstm' then
   --- SINGLE LAYER ---
   -- forward rnn
   -- build simple recurrent neural network
-  fwd_1 = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
+  --[[fwd_1 = nn.FastLSTM(opt.input_dim, opt.hidden_size)  
   s_rnn_1 = nn.Sequencer(fwd_1)
 
   rnn = nn.Sequential()     
      :add(s_rnn_1)
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
-     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
-     :add(nn.Sequencer(nn.LogSoftMax()))
+     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim)))
+     :add(nn.Sequencer(nn.LogSoftMax()))]]--
      
-  --[[
   --- TWO LAYERS ---
   -- forward rnn
   -- build simple recurrent neural network
@@ -98,9 +97,8 @@ elseif opt.model_type == 'lstm' then
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
      :add(s_rnn_2)
      :add(nn.Sequencer(nn.Dropout(opt.dropout)))
-     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim))) -- times two due to JoinTable
-     :add(nn.Sequencer(nn.LogSoftMax()))
-     ]]--
+     :add(nn.Sequencer(nn.Linear(opt.hidden_size, opt.output_dim)))
+     :add(nn.Sequencer(nn.LogSoftMax()))    
 end
 
 -- print the model

@@ -2,20 +2,8 @@ import argparse
 import os
 import sys
 import shutil as st
-from subprocess import call
 from lib.textgrid import TextGrid
-
-
-# run system commands
-def easy_call(command):
-    try:
-        call(command, shell=True)
-    except Exception as exception:
-        print "Error: could not execute the following"
-        print ">>", command
-        print type(exception)  # the exception instance
-        print exception.args  # arguments stored in .args
-        exit(-1)
+from lib import utils
 
 
 def neg_vot_creator(audio_path, textgrid_path, output_path, l):
@@ -45,7 +33,7 @@ def neg_vot_creator(audio_path, textgrid_path, output_path, l):
             try:
                 # convert to 16K 16bit
                 cmd = 'sbin/sox %s -r 16000 -b 16 %s' % (audio_path + item, tmp_file)
-                easy_call(cmd)
+                utils.easy_call(cmd)
 
                 # parse the textgrid
                 textgrid = TextGrid()
@@ -81,7 +69,7 @@ def neg_vot_creator(audio_path, textgrid_path, output_path, l):
                 labels_file.close()
 
                 command = "./sbin/VowelDurationFrontEnd %s %s %s" % (input_file.name, features_file.name, labels_file.name)
-                easy_call(command)
+                utils.easy_call(command)
 
                 # remove leftovers
                 os.remove(tmp_input)
