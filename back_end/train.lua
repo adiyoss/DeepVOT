@@ -112,7 +112,7 @@ function train(train_x, train_y)
                        -- reset gradients
                        gradParameters:zero()                       
                        
-                       local outputs = rnn:forward(inputs)
+                       local outputs = rnn:forward(inputs)                        
                        local err = criterion:forward(outputs, targets)
                                               
                        -- 3. backward sequence through rnn (i.e. backprop through time)   

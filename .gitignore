@@ -1,6 +1,7 @@
 # general
 *.pyc
 *.net
+.idea/
 
 # post-process
 post_process/.idea
