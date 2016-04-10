@@ -34,11 +34,13 @@ source ~/.profile
  
 ## Usage
 For measurement just type from the run\_all folder: 
-`python predict.py "input wav file" "output text grid file" "start time to search" "end time to search"`
+```bash
+python predict.py "input wav file" "output text grid file" "start time to search" "end time to search"
+```
 
 ## Example
 You can try our tool using the example file in the data folder and compare it to the manual annotation.
 cd into the run\_all directory and type:
 ```bash
-python predict.py test\_data/orig/bun\_prevoiced.wav test\_data/prediction/bun\_prevoiced.TextGrid 0.05 0.215
+python predict.py test_data/orig/bun_prevoiced.wav test_data/prediction/bun_prevoiced.TextGrid 0.05 0.215
 ```
