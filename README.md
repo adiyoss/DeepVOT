@@ -7,7 +7,7 @@ We propose an algorithm that estimates if the stop is prevoiced, and measures ei
 
 ## Content
 The repository contains code for VOT and prevoicing measurement, feature extraction and visualization tools.
- - back\_end folder: contains the training algorithms, it can be used for training the model on new datasets or using different features.
+ * `back\_end folder`: contains the training algorithms, it can be used for training the model on new datasets or using different features.
  - front\_end folder: contains the features extraction algorithm, it can be used for configuring different parameters for the feature extraction or just for visualization.
  - post\_process folder: contains the post processing algorithms for extracting the measurements from the network probability distribution
  - visualization folder: contains features visualization tools.
