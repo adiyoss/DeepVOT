@@ -2,10 +2,10 @@
 *.pyc
 *.net
 .idea/
+paper/
 
 # post-process
 post_process/.idea
-paper/*
 
 # backend
 back_end/data/multi_class/
