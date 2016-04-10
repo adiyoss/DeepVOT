@@ -36,26 +36,10 @@ front_end/data/natalia_tmp/.DS_Store
 front_end/data/natalia_tmp/new/.DS_Store
 
 # classification
-classification/.DS_Store
-classification/.idea/
+classification/
 
 # neg
-neg_vot/.DS_Store
-neg_vot/.idea/
-neg_vot/nn/.DS_Store
-neg_vot/nn/python/.DS_Store
-neg_vot/nn/python/.idea/
-neg_vot/nn/python/data.pyc
-neg_vot/nn/python/model/
-neg_vot/nn/torch/.DS_Store
-neg_vot/nn/torch/data/
-neg_vot/nn/torch/results/.DS_Store
-neg_vot/nn/torch/results/10ms_db/.DS_Store
-neg_vot/nn/torch/results/old/.DS_Store
-neg_vot/nn/torch/results/old/fold_3/.DS_Store
-neg_vot/signal_processing/.DS_Store
-neg_vot/signal_processing/.idea/
-neg_vot/signal_processing/data/.DS_Store
+neg_vot/
 
 # visualization
 visualization/.DS_Store
