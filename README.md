@@ -11,6 +11,7 @@ The repository contains code for VOT and prevoicing measurement, feature extract
  - front\_end folder: contains the features extraction algorithm, it can be used for configuring different parameters for the feature extraction or just for visualization.
  - post\_process folder: contains the post processing algorithms for extracting the measurements from the network probability distribution
  - visualization folder: contains features visualization tools.
+ - run_all folder: contains the scripts and models to run the code end-to-end.
 
 ## Installation
 The code runs on MacOSX and Linux only.
@@ -20,8 +21,7 @@ The code uses the following dependencies:
 git clone https://github.com/torch/distro.git ~/torch --recursive
 cd ~/torch; bash install-deps;
 ./install.sh 
-```
-```bash
+
 # On Linux with bash
 source ~/.bashrc
 # On Linux with zsh
@@ -31,9 +31,10 @@ source ~/.profile
 ```
  - [Python (2.7) + Numpy] (https://penandpants.com/2012/02/24/install-python/)
  - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
+ 
 ## Usage
-For measurement just type python predict.py "input wav file" "output text grid file"
+For measurement just type python predict.py "input wav file" "output text grid file" "start time to search" "end time to search"
 
 ## Example
 You can try our tool using the example file in the data folder and compare it to the manual annotation.
-From the repository directory type: python predict.py data/wav/ex.wav data/pred_text_grid/ex.TextGrid
+cd into the run\_all directory and type: python predict.py test\_data/orig/bun\_prevoiced.wav test\_data/prediction/bun\_prevoiced.TextGrid 0.05 0.215
