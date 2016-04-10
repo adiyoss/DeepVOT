@@ -37,4 +37,7 @@ For measurement just type python predict.py "input wav file" "output text grid f
 
 ## Example
 You can try our tool using the example file in the data folder and compare it to the manual annotation.
-cd into the run\_all directory and type: python predict.py test\_data/orig/bun\_prevoiced.wav test\_data/prediction/bun\_prevoiced.TextGrid 0.05 0.215
+cd into the run\_all directory and type:
+```bash
+python predict.py test\_data/orig/bun\_prevoiced.wav test\_data/prediction/bun\_prevoiced.TextGrid 0.05 0.215
+```
