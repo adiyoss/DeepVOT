@@ -16,9 +16,9 @@ The repository contains code for VOT and prevoicing measurement, feature extract
 The code runs on MacOSX and Linux only.
 The code uses the following dependencies:
  - Torch7 with RNN package
-    Install torch7: git clone https://github.com/torch/distro.git ~/torch --recursive
-                    cd ~/torch; bash install-deps;
-                    ./install.sh 
+  > git clone https://github.com/torch/distro.git ~/torch --recursive
+  > cd ~/torch; bash install-deps;
+  > ./install.sh 
  - Python (2.7) + Numpy
  - For the visualization tools: Matplotlib
  
