@@ -16,12 +16,21 @@ The repository contains code for VOT and prevoicing measurement, feature extract
 The code runs on MacOSX and Linux only.
 The code uses the following dependencies:
  - Torch7 with RNN package
-  > git clone https://github.com/torch/distro.git ~/torch --recursive
-  > cd ~/torch; bash install-deps;
-  > ./install.sh 
- - Python (2.7) + Numpy
- - For the visualization tools: Matplotlib
- 
+```bash
+git clone https://github.com/torch/distro.git ~/torch --recursive
+cd ~/torch; bash install-deps;
+./install.sh 
+```
+```bash
+# On Linux with bash
+source ~/.bashrc
+# On Linux with zsh
+source ~/.zshrc
+# On OSX or in Linux with none of the above.
+source ~/.profile
+```
+ - [Python (2.7) + Numpy] (https://penandpants.com/2012/02/24/install-python/)
+ - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
 ## Usage
 For measurement just type python predict.py "input wav file" "output text grid file"
 
