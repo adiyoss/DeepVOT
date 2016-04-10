@@ -7,11 +7,11 @@ We propose an algorithm that estimates if the stop is prevoiced, and measures ei
 
 ## Content
 The repository contains code for VOT and prevoicing measurement, feature extraction and visualization tools.
- * `back\_end folder`: contains the training algorithms, it can be used for training the model on new datasets or using different features.
- - front\_end folder: contains the features extraction algorithm, it can be used for configuring different parameters for the feature extraction or just for visualization.
- - post\_process folder: contains the post processing algorithms for extracting the measurements from the network probability distribution
- - visualization folder: contains features visualization tools.
- - run_all folder: contains the scripts and models to run the code end-to-end.
+ - `back_end folder`: contains the training algorithms, it can be used for training the model on new datasets or using different features.
+ - `front_end folder`: contains the features extraction algorithm, it can be used for configuring different parameters for the feature extraction or just for visualization.
+ - `post_process folder`: contains the post processing algorithms for extracting the measurements from the network probability distribution
+ - `visualization folder`: contains features visualization tools.
+ - `run_all folder`: contains the scripts and models to run the code end-to-end.
 
 ## Installation
 The code runs on MacOSX and Linux only.
@@ -33,7 +33,8 @@ source ~/.profile
  - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
  
 ## Usage
-For measurement just type python predict.py "input wav file" "output text grid file" "start time to search" "end time to search"
+For measurement just type from the run\_all folder: 
+`python predict.py "input wav file" "output text grid file" "start time to search" "end time to search"`
 
 ## Example
 You can try our tool using the example file in the data folder and compare it to the manual annotation.
