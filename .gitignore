@@ -64,3 +64,7 @@ visualization/measurement/.DS_Store
 visualization/measurement/examples/.DS_Store
 visualization/neg_vot/.DS_Store
 visualization/neg_vot/.idea/
+
+# run_all
+run_all/.idea/
+run_all/.DS_Store
