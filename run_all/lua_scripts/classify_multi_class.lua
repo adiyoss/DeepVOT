@@ -17,7 +17,7 @@ if not opt then
    cmd:option('-input_file', '../test_data/features/f.txt', 'the path to the features file')   
    cmd:option('-output_file', '1.txt', 'the path to output the predictions')
    cmd:option('-input_dim', 63, 'the input size')
-   cmd:option('-model_path', 'model/model.net', 'the path to the model')
+   cmd:option('-model_path', 'model/deep_vot_model.net', 'the path to the model')
    cmd:option('-output_dim', 4, 'the output size')
    cmd:option('-hidden_size', 100, 'the hidden layer size')
 
