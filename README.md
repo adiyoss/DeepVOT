@@ -14,7 +14,7 @@ The repository contains code for VOT and prevoicing measurement, feature extract
  - `run_all folder`: contains the scripts and models to run the code end-to-end.
 
 ## Installation
-The code runs on MacOSX and Linux only.
+The code runs on MacOSX only.
 ### Dependencies
 The code uses the following dependencies:
  - Torch7 with RNN package
