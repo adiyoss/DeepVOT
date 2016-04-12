@@ -15,6 +15,7 @@ The repository contains code for VOT and prevoicing measurement, feature extract
 
 ## Installation
 The code runs on MacOSX and Linux only.
+### Dependencies
 The code uses the following dependencies:
  - Torch7 with RNN package
 ```bash
@@ -35,6 +36,11 @@ luarocks install rnn
  - [Python (2.7) + Numpy] (https://penandpants.com/2012/02/24/install-python/)
  - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
  
+### Model Installation
+In the project directory, cd into `run_all/lua_scripts/model/model_split/` and type:
+```bash
+cat fld* > ../model.net
+```
 ## Usage
 For measurement just type from the run\_all folder: 
 ```bash
