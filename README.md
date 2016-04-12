@@ -28,6 +28,9 @@ source ~/.bashrc
 source ~/.zshrc
 # On OSX or in Linux with none of the above.
 source ~/.profile
+
+# For rnn package installation
+luarocks install rnn
 ```
  - [Python (2.7) + Numpy] (https://penandpants.com/2012/02/24/install-python/)
  - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
