@@ -17,7 +17,6 @@ def predict(input_path, output_path, start_extract, end_extract):
     tmp_features = 'tmp.features'
     tmp_prob = 'tmp.prob'
     tmp_prediction = 'tmp.prediction'
-
     if not os.path.exists(input_path):
         print >>sys.stderr, "wav file does not exits"
         return

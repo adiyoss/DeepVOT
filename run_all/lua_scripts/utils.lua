@@ -291,12 +291,29 @@ function write_predictions(dump_dir, y_hat, y_hat_frame)
   out_fid:close()
 end
 
+-- argmax.lua
+local function argmax_1D(v)
+   local length = v:size(1)
+   assert(length > 0)
+
+   -- examine on average half the entries
+   local maxValue = torch.max(v)
+   for i = 1, v:size(1) do
+      if v[i] == maxValue then
+         return i
+      end
+   end
+end
+
 function write_raw_predictions(output_filename, y_hat_frame)
   -- write the predctions file
   print('==> write full predictions')
   out_fid = io.open(output_filename, 'w')
-  for j=1,y_hat_frame:size(1) do
+  o_1 = io.open('1.txt', 'w') 
+  for j=1,y_hat_frame:size(1) do    
+    o_1:write(argmax_1D(y_hat_frame[j]) .. '\n')
     out_fid:write(tostring(y_hat_frame[j][1]) .. ' ' .. tostring(y_hat_frame[j][2]) .. ' ' .. tostring(y_hat_frame[j][3]) .. ' ' .. tostring(y_hat_frame[j][4]) .. '\n')
   end
+  o_1:close()
   out_fid:close()
 end

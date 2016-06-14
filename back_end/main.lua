@@ -1,5 +1,5 @@
 -- for debuing purposes
---require('mobdebug').start()
+require('mobdebug').start()
 require('torch')
 require('nn')
 require('rnn')
@@ -87,7 +87,7 @@ print('==> validation set balance: first label: ' .. val_balance .. ', second la
 print('==> test set balance: first label: ' .. test_balance .. ', second label: ' .. (1-test_balance))
 
 -- gets the first loss on the validation set
-loss = validate(val_x, val_y)
+--loss = validate(val_x, val_y)
 print('==> validation loss: ' .. loss)
 
 -- training

@@ -23,9 +23,9 @@ def create_text_grid(label_path, output_text_grid, length, start_extract):
     fid.close()
 
     # create the TextGrid file and save it
-    if len(values) == 2:
+    if len(values) == 3 and int(values[1]) == -1:    
         onset = values[0]
-        offset = values[1]
+        offset = values[2]
         text_grid = TextGrid()
 
         vot_tier = IntervalTier(name='vot', xmin=0.0, xmax=float(length))
@@ -35,8 +35,8 @@ def create_text_grid(label_path, output_text_grid, length, start_extract):
 
         text_grid.append(vot_tier)
         text_grid.write(output_text_grid)
-
-    if len(values) == 3:
+    
+    if len(values) == 3 and int(values[1]) != -1:        
         prevoiced = values[0]
         onset = values[1]
         offset = values[2]

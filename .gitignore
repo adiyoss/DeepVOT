@@ -3,6 +3,7 @@
 *.net
 .idea/
 paper/
+run_all/test_data/tmp/
 
 # post-process
 post_process/.idea
