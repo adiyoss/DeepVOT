@@ -135,27 +135,35 @@ elseif opt.data_type == 'neg_vot' then
   
 elseif opt.data_type == 'multi' then
   data_dir = 'data/multi_class/'
-  local train = torch.load(paths.concat(data_dir, opt.train))
-  local test = torch.load(paths.concat(data_dir, opt.test))
+  all_data = torch.load(paths.concat(data_dir, opt.train))
+  test_data = torch.load(paths.concat(data_dir, opt.test))
     
   -- take part of the training set for validation
-  local val_size = train:size(1)*opt.val_percentage
+  local val_size = #all_data*opt.val_percentage  
+  local train_size = #all_data - val_size
+  val_data = {}
+  train_data = {}
+  for i=1,#all_data do
+    -- Detecting and removing NaNs
+    if all_data[i]:ne(all_data[i]):sum() > 0 then
+      print(sys.COLORS.red .. ' training set has NaN/s, replace with zeros.')
+      all_data[i][all_data[i]:ne(all_data[i])] = 0
+    end
+    if i <= train_size then
+      table.insert(train_data, all_data[i])
+    else
+      table.insert(val_data, all_data[i])
+    end
+  end
+  
+  --[[
   local val = train[{{(train:size(1)-val_size), train:size(1)}, {}}]   -- take the last elements for validation
   train = train[{{1, (train:size(1)-val_size-1)}, {}}]                 -- the rest are for training
-  
-  -- Detecting and removing NaNs
-  if train:ne(train):sum() > 0 then
-    print(sys.COLORS.red .. ' training set has NaN/s, replace with zeros.')
-    train[train:ne(train)] = 0
-  end
+
   if test:ne(test):sum() > 0 then
     print(sys.COLORS.red .. ' test set has NaN/s, replace with zeros.')
     test[test:ne(test)] = 0
-  end
-  if val:ne(val):sum() > 0 then
-    print(sys.COLORS.red .. ' validation set has NaN/s, replace with zeros.')
-    val[val:ne(val)] = 0
-  end
+  end  
   
   -- build training set
   train_x = train[{{}, {2, (opt.input_dim+1)}}]
@@ -171,7 +179,8 @@ elseif opt.data_type == 'multi' then
   test_x = test[{{}, {2, (opt.input_dim+1)}}]
   test_y = test[{{}, 1}]  
   test_y:add(1) -- torch start index is 1 not 0
-  
+  ]] --
+
 elseif opt.data_type == 'vot' then
   data_dir = 'data/vot/'
   local train = torch.load(paths.concat(data_dir, opt.train))

@@ -14,6 +14,7 @@ def measurement_features(audio_path, textgrid_path, output_path):
     label_suffix = '.labels'
     tmp_features = tmp_dir + 'tmp.features'
     tmp_file = tmp_dir + 'tmp.wav'
+    epsilon = 0.001
 
     # validation
     if not os.path.exists(audio_path):
@@ -39,11 +40,13 @@ def measurement_features(audio_path, textgrid_path, output_path):
                 textgrid = TextGrid()
                 textgrid.read(textgrid_path + item.replace('.wav', '.TextGrid'))
 
+                length = textgrid._TextGrid__tiers[0]._IntervalTier__intervals[2]._Interval__xmax
+
                 onset = textgrid._TextGrid__tiers[0]._IntervalTier__intervals[1]._Interval__xmin
                 offset = textgrid._TextGrid__tiers[0]._IntervalTier__intervals[1]._Interval__xmax
 
                 start_extract = 0
-                end_extract = offset + 0.08
+                end_extract = min(offset + 0.08, length-epsilon)
 
                 # =================== ACOUSTIC FEATURES =================== #
                 # write labels

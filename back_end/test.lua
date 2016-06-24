@@ -5,7 +5,7 @@ require 'optim'   -- an optimization package, for online and batch methods
 
 print '==> defining test procedure'
 -- test function
-function test(inputs, targets)  
+function test(data)  
   -- local vars
   local time = sys.clock()
 
@@ -15,24 +15,31 @@ function test(inputs, targets)
   -- test over test data
   print('==> testing on test set:')
   local err = 0
-  for i=1,inputs:size(1) do
+  local count = 1
+  for i=1,#data do 
     -- disp progress
-    xlua.progress(i, inputs:size(1))
+    xlua.progress(i, #data)
+    count = count + data[i]:size(1)
     
     local input, target = {}, {}
-    table.insert(input, inputs[i])
-    table.insert(target, targets[i])
-    
+    for t=1, data[i]:size(1) do
+      table.insert(input, data[i][t][{{2, (opt.input_dim+1)}}])
+      table.insert(target, (data[i][t][1] + 1)) -- torch starts counting from 1
+    end
+
     -- test sample
     local output = rnn:forward(input)
     err = err + criterion:forward(output, target)
     
-    confusion:add(output[1], target[1])
+    for i=1,#target do
+      -- update confusion                    
+      confusion:add(output[i], target[i])
+    end   
   end
   
   -- timing
   time = sys.clock() - time
-  time = time / inputs:size(1)
+  time = time / count
   print("\n==> time to test 1 sample = " .. (time*1000) .. 'ms')
   
   -- print confusion matrix
@@ -47,5 +54,5 @@ function test(inputs, targets)
   -- initialize confusion matrix for next epoch
   confusion:zero()
   
-  return err / inputs:size(1)
+  return err / #data
 end

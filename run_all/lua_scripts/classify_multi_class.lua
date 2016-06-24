@@ -36,19 +36,21 @@ function classify(x)
   rnn:evaluate()
 
   -- predict over test data
-  print('==> classifing:')    
+  print('==> classifing:')     
   local input = {}
-  table.insert(input, x)
-    
+  for t=1, x:size(1) do
+    table.insert(input, x[t])
+  end
+      
   -- test sample
   local output = rnn:forward(input)    
-  prediction = output[1]:clone()  
+--  prediction = output[1]:clone()
 
   -- timing
   time = sys.clock() - time
   print("\n==> time to classify 1 sample = " .. (time*1000) .. 'ms')
     
-  return prediction
+  return output
 end
 
 ------------------------------------------------------------------

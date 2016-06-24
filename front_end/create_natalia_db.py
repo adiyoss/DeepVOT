@@ -27,11 +27,12 @@ def create_db(audio_path, textgrid_path, output_path):
 
             for i, interval in enumerate(tier._IntervalTier__intervals):
                 if 'ne' in interval._Interval__mark:
-                    # gap = 0.1
-                    gap = 0.02
+                    # gap = 0.02
                     start_vot = interval._Interval__xmin
                     end_vot = interval._Interval__xmax
-                    start = start_vot - gap
+                    gap = round((end_vot - start_vot)*2, 2)
+                    gap = max(0.05, gap)
+                    start = max(0, start_vot - gap)
                     end = end_vot + gap
                     output_name = os.path.abspath(prevoiced_path) + '/' + str(i) + '_' + item
                     utils.crop_wav(os.path.abspath(audio_path + item), start, end,
@@ -49,10 +50,12 @@ def create_db(audio_path, textgrid_path, output_path):
                     new_tg.write(output_name.replace('.wav', '.TextGrid'))
 
                 elif 'v' in interval._Interval__mark:
-                    gap = 0.02
+                    # gap = 0.02
                     start_vot = interval._Interval__xmin
                     end_vot = interval._Interval__xmax
-                    start = start_vot - gap
+                    gap = round((end_vot - start_vot)*2, 2)
+                    gap = max(0.05, gap)
+                    start = max(0, start_vot - gap)
                     end = end_vot + gap
                     output_name = os.path.abspath(voiced_path) + '/' + str(i) + '_' + item
                     utils.crop_wav(os.path.abspath(audio_path + item), start, end,

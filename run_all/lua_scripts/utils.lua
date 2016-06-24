@@ -308,12 +308,9 @@ end
 function write_raw_predictions(output_filename, y_hat_frame)
   -- write the predctions file
   print('==> write full predictions')
-  out_fid = io.open(output_filename, 'w')
-  o_1 = io.open('1.txt', 'w') 
-  for j=1,y_hat_frame:size(1) do    
-    o_1:write(argmax_1D(y_hat_frame[j]) .. '\n')
+  out_fid = io.open(output_filename, 'w')  
+  for j=1,#y_hat_frame do    
     out_fid:write(tostring(y_hat_frame[j][1]) .. ' ' .. tostring(y_hat_frame[j][2]) .. ' ' .. tostring(y_hat_frame[j][3]) .. ' ' .. tostring(y_hat_frame[j][4]) .. '\n')
   end
-  o_1:close()
   out_fid:close()
 end
