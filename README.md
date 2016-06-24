@@ -49,5 +49,9 @@ python predict.py "input wav file" "output text grid file" "start time to search
 You can try our tool using the example file in the data folder and compare it to the manual annotation.
 cd into the run\_all directory and type:
 ```bash
-python predict.py test_data/orig/bun_prevoiced.wav test_data/prediction/bun_prevoiced.TextGrid 0.05 0.215
+python predict.py test_data/orig/bun.wav test_data/prediction/bun.TextGrid 0.0 0.2
+
+or
+
+python predict.py test_data/orig/bag.wav test_data/prediction/bag.TextGrid 0.56 0.65
 ```
