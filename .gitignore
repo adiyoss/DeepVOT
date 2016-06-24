@@ -1,6 +1,7 @@
 # general
 *.pyc
 *.net
+*.t7
 .idea/
 paper/
 run_all/test_data/tmp/
