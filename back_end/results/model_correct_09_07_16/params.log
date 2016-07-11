@@ -8,7 +8,7 @@ save: results/
 model_type: lstm
 val_percentage: 0.15
 test: test.t7
-patience: 8
+patience: 5
 input_dim: 63
 output_dim: 4
 train: train.t7

@@ -53,6 +53,11 @@ elseif opt.optimization == 'ADAGRAD' then
       learningRate = opt.learningRate,
    }
    optimMethod = optim.adagrad
+elseif opt.optimization == 'ADAM' then
+   optimState = {
+      learningRate = opt.learningRate,
+   }
+   optimMethod = optim.adam
 else
    error('unknown optimization method')
 end

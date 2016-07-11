@@ -5,6 +5,7 @@
 .idea/
 paper/
 run_all/test_data/tmp/
+run_all/test_data/strangeVOTtextgrids/
 
 # post-process
 post_process/.idea
