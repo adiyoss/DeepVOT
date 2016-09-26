@@ -40,8 +40,8 @@ def predict(input_path, output_path, start_extract, end_extract):
     create_text_grid(predict_file, output_path, length, float(start_extract))
 
     # remove leftovers
-    if os.path.exists(tmp_dir):
-        shutil.rmtree(tmp_dir)
+    # if os.path.exists(tmp_dir):
+    #     shutil.rmtree(tmp_dir)
 
 if __name__ == "__main__":
     # -------------MENU-------------- #

@@ -2,8 +2,8 @@
 
 function predict_classes(frame_pred)
   local classes = {}
-  for i=1,#frame_pred do
-    maxs, dims = torch.max(frame_pred[i], 2)
+  for i=1,frame_pred:size(1) do
+    maxs, dims = torch.max(frame_pred[i][1], 1)
     classes[i] = dims
   end  
   return classes
@@ -305,12 +305,24 @@ local function argmax_1D(v)
    end
 end
 
-function write_raw_predictions(output_filename, y_hat_frame)
+function write_raw_predictions(output_filename, y_hat_frame)  
+  -- write the predctions file
+  print('==> write full predictions')
+  local classes = predict_classes(y_hat_frame) 
+  out_fid = io.open('full_predictions.txt', 'w')
+  for i=1,#classes do
+    for j=1,classes[i]:size(1) do      
+      out_fid:write(tostring(classes[i][j]) .. ' ')
+    end
+    out_fid:write('\n')
+  end
+  out_fid:close()
+  
   -- write the predctions file
   print('==> write full predictions')
   out_fid = io.open(output_filename, 'w')  
-  for j=1,#y_hat_frame do    
-    out_fid:write(tostring(y_hat_frame[j][1]) .. ' ' .. tostring(y_hat_frame[j][2]) .. ' ' .. tostring(y_hat_frame[j][3]) .. ' ' .. tostring(y_hat_frame[j][4]) .. '\n')
+  for j=1,y_hat_frame:size(1) do    
+    out_fid:write(tostring(y_hat_frame[j][1][1]) .. ' ' .. tostring(y_hat_frame[j][1][2]) .. ' ' .. tostring(y_hat_frame[j][1][3]) .. ' ' .. tostring(y_hat_frame[j][1][4]) .. '\n')
   end
   out_fid:close()
 end

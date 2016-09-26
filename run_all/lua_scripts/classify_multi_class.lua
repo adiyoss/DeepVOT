@@ -14,7 +14,7 @@ if not opt then
    cmd:text()
    cmd:text('Options:')
 
-   cmd:option('-input_file', '../test_data/features/f.txt', 'the path to the features file')   
+   cmd:option('-input_file', '../tmp_files/tmp.features', 'the path to the features file')   
    cmd:option('-output_file', '1.txt', 'the path to output the predictions')
    cmd:option('-input_dim', 63, 'the input size')
    cmd:option('-model_path', 'model/deep_vot_model.net', 'the path to the model')
@@ -34,16 +34,9 @@ function classify(x)
   
   -- set model to evaluate mode (for modules that differ in training and testing, like Dropout)
   rnn:evaluate()
-
-  -- predict over test data
-  print('==> classifing:')     
-  local input = {}
-  for t=1, x:size(1) do
-    table.insert(input, x[t])
-  end
       
   -- test sample
-  local output = rnn:forward(input)    
+  local output = rnn:forward(x)    
 --  prediction = output[1]:clone()
 
   -- timing
@@ -59,10 +52,12 @@ dofile('utils.lua')
 print('==> load test file')
 local test_data = load_data(opt.input_file)
 
+-- Detecting and removing NaNs
 if test_data:ne(test_data):sum() > 0 then
-    print(sys.COLORS.red .. ' test set has NaN/s, replace with zeros.')
-    test_data[test_data:ne(test_data)] = 0
+  print(sys.COLORS.red .. ' test set has NaN/s, replace with zeros.')
+  test_data[test_data:ne(test_data)] = 0
 end
+test_data = test_data:reshape(test_data:size(1), 1, test_data:size(2))
 
 -- data statistics
 print('\n==> loading model')

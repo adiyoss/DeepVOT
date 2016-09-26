@@ -14,9 +14,9 @@ def measurement_features(audio_path, textgrid_path, output_path):
     label_suffix = '.labels'
     tmp_features = tmp_dir + 'tmp.features'
     tmp_file = tmp_dir + 'tmp.wav'
-    gap_start = 0.02
+    gap_start = 0.05
     # gap_start = 0.1
-    gap_end = 0.02
+    gap_end = 0.05
 
     # validation
     if not os.path.exists(audio_path):

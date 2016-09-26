@@ -1,0 +1,29 @@
+Train:
+ [ 5674383   13023    4287     146]   99.693% 	[class: 1]
+ [    5418 2693533    8833    2520]   99.381% 	[class: 2]
+ [    4956   18116 2008975   15095]   98.136% 	[class: 3]
+ [     242    3193   14879 4159601]  99.562% 	[class: 4]
+ + average row correct: 99.192944169044% 
+ + average rowUcol correct (VOC measure): 98.399367928505% 
+ + global correct: 99.379867643842%
+ time to learn 1 sample = 8.1157051926482ms
+
+Validation:
+ [    8433     133      34       0]   98.058% 	[class: 1]
+ [     146    3537      53     190]   90.092% 	[class: 2]
+ [      92     178    6396     329]   91.437% 	[class: 3]
+ [       0       3      79    6208]  98.696% 	[class: 4]
+ + average row correct: 94.570730626583% 
+ + average rowUcol correct (VOC measure): 89.831978082657% 
+ + global correct: 95.207469683468% 	 
+ time to validate 1 sample = 0.50470055034079ms
+ 
+ Test:
+ [   22106     544      42       0]   97.418% 	[class: 1]
+ [     308   11562     104     581]   92.091% 	[class: 2]
+ [     126     146    8099     611]   90.169% 	[class: 3]
+ [       0      26     110   16516]  99.183% 	[class: 4]
+ + average row correct: 94.715225696564% 
+ + average rowUcol correct (VOC measure): 90.734973549843% 
+ + global correct: 95.732658793384%
+ time to test 1 sample = 0.502358668561ms
