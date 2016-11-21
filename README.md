@@ -37,7 +37,7 @@ luarocks install rnn
  - For the visualization tools: [Matplotlib] (https://penandpants.com/2012/02/24/install-python/)
  
 ### Model Installation
-Download the model from: [DeepVot Model] (https://drive.google.com/uc?export=download&id=0B69m3kcUfbmPOUE0VkpzOVF2TzQ). Then, move the model file to: `run_all/lua_scripts/model/` inside the project directory.
+Download the model from: [DeepVot Model] (https://drive.google.com/file/d/0B69m3kcUfbmPOUE0VkpzOVF2TzQ/view?usp=sharing). Then, move the model file to: `run_all/lua_scripts/model/` inside the project directory.
 
 ## Usage
 For measurement just type from the run\_all folder: 
