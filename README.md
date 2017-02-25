@@ -17,8 +17,6 @@ If you find our work useful please cite:
 }
 ```
 
-[[paper]](http://u.cs.biu.ac.il/~jkeshet/papers/AdiKeDmGo16.pdf
-
 ## Content
 The repository contains code for VOT and prevoicing measurement, feature extraction and visualization tools.
  - `back_end folder`: contains the training algorithms, it can be used for training the model on new datasets or using different features.
