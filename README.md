@@ -3,7 +3,21 @@ Voice onset time (VOT) is defined as the time difference between the onset of th
 When voicing begins preceding the burst, the stop is called prevoiced, and the VOT is negative. 
 When voicing begins following the burst the VOT is positive. 
 While most of the work on automatic measurement of VOT has focused on positive VOT mostly evident in American English, in many languages the VOT can be negative. 
-We propose an algorithm that estimates if the stop is prevoiced, and measures either positive or negative VOT, respectively.  More specifically, the input to the algorithm is a speech segment of an arbitrary length containing a single stop consonant, and the output is the time of the burst onset, the duration of the burst, and the time of the prevoicing onset with a confidence. Manually labeled data is used to train a recurrent neural network that can model the dynamic temporal behavior of the input signal, and outputs the events' onset and duration. Results suggest that the proposed algorithm is superior to the current state-of-the-art both in terms of the VOT measurement and in terms of prevoicing detection. [[paper]](http://u.cs.biu.ac.il/~jkeshet/papers/AdiKeDmGo16.pdf)
+We propose an algorithm that estimates if the stop is prevoiced, and measures either positive or negative VOT, respectively.  More specifically, the input to the algorithm is a speech segment of an arbitrary length containing a single stop consonant, and the output is the time of the burst onset, the duration of the burst, and the time of the prevoicing onset with a confidence. Manually labeled data is used to train a recurrent neural network that can model the dynamic temporal behavior of the input signal, and outputs the events' onset and duration. Results suggest that the proposed algorithm is superior to the current state-of-the-art both in terms of the VOT measurement and in terms of prevoicing detection. 
+
+If you find our work useful please cite: 
+[Automatic Measurement of Voice Onset Time and Prevoicing using Recurrent Neural Networks] (http://u.cs.biu.ac.il/~jkeshet/papers/AdiKeDmGo16.pdf)
+```
+@article{adi2016automatic,
+  title={Automatic Measurement of Voice Onset Time and Prevoicing using Recurrent Neural Networks},
+  author={Adi, Yossi and Keshet, Joseph and Dmitrieva, Olga and Goldrick, Matt},
+  journal={Interspeech 2016},
+  pages={3152--3155},
+  year={2016}
+}
+```
+
+[[paper]](http://u.cs.biu.ac.il/~jkeshet/papers/AdiKeDmGo16.pdf
 
 ## Content
 The repository contains code for VOT and prevoicing measurement, feature extraction and visualization tools.
