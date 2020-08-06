@@ -1,3 +1,5 @@
+# Deprecated! Please use the following repo with a Python implementation: https://github.com/MLSpeech/Dr.VOT
+
 # DeepVOT - Automatic Measurement of Voice Onset Time and Prevoicing using Recurrent Neural Networks
 Voice onset time (VOT) is defined as the time difference between the onset of the burst and the onset of voicing. 
 When voicing begins preceding the burst, the stop is called prevoiced, and the VOT is negative. 
